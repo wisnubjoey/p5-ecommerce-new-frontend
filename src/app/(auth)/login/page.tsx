@@ -24,16 +24,20 @@ export default function LoginPage() {
 
     try {
       const response = await authApi.login(formData.email, formData.password);
-      if (response.data.token) {
-        // Set token in both cookie and localStorage
+      console.log('Login response:', response);
+      
+      if (response.status === 'success' && response.data.token) {
         Cookies.set('auth_token', response.data.token);
         localStorage.setItem('auth_token', response.data.token);
         
-        toast.success('Login berhasil!');
+        toast.success(response.message);
         router.push('/dashboard');
         router.refresh();
+      } else {
+        toast.error('Token tidak ditemukan dalam response');
       }
     } catch (error: any) {
+      console.error('Login error:', error);
       toast.error(error.response?.data?.message || 'Login gagal');
     } finally {
       setIsLoading(false);

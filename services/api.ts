@@ -1,4 +1,6 @@
 // src/services/api.ts
+import { Product } from '@/lib/types/product';
+import { CreateProductDTO } from '@/lib/types/product';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -39,6 +41,37 @@ export const authApi = {
   getMe: async () => {
     const response = await api.get('/auth/me');
     return response.data;
+  }
+};
+
+//products
+
+// src/services/api.ts
+// ... existing code ...
+
+export const productsApi = {
+  getAll: async () => {
+    const response = await api.get<Product[]>('/products');
+    return response.data;
+  },
+
+  getOne: async (id: number) => {
+    const response = await api.get<Product>(`/products/${id}`);
+    return response.data;
+  },
+
+  create: async (data: CreateProductDTO) => {
+    const response = await api.post<Product>('/products', data);
+    return response.data;
+  },
+
+  update: async (id: number, data: CreateProductDTO) => {
+    const response = await api.put<Product>(`/products/${id}`, data);
+    return response.data;
+  },
+
+  delete: async (id: number) => {
+    await api.delete(`/products/${id}`);
   }
 };
 
