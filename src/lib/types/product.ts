@@ -4,7 +4,6 @@ export interface Product {
     name: string;
     description: string;
     main_photo_url: string;
-    instagram_link?: string;
     created_at: string;
     updated_at: string;
     category: {
@@ -27,6 +26,5 @@ export interface Product {
     name: string;
     description: string;
     main_photo_url: string;
-    instagram_link?: string;
     gallery_photos?: string[];
   }

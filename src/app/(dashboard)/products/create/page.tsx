@@ -35,7 +35,6 @@ export default function CreateProductPage() {
     name: '',
     description: '',
     main_photo_url: '',
-    instagram_link: '',
     gallery_photos: [],
   });
 
@@ -147,18 +146,6 @@ export default function CreateProductPage() {
                 value={formData.gallery_photos || []}
                 onChange={(urls) => setFormData(prev => ({ ...prev, gallery_photos: urls }))}
                 maxImages={5}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="instagram">Link Instagram</Label>
-              <Input
-                id="instagram"
-                value={formData.instagram_link}
-                onChange={(e) => 
-                  setFormData(prev => ({ ...prev, instagram_link: e.target.value }))
-                }
-                placeholder="https://instagram.com/..."
               />
             </div>
 

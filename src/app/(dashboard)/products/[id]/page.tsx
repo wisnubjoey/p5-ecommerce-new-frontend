@@ -36,7 +36,6 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     name: '',
     description: '',
     main_photo_url: '',
-    instagram_link: '',
     gallery_photos: [],
   });
 
@@ -52,7 +51,6 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         name: product.name,
         description: product.description,
         main_photo_url: product.main_photo_url,
-        instagram_link: product.instagram_link || '',
         gallery_photos: product.galleries.map(g => g.photo_url),
       });
     } catch (error) {

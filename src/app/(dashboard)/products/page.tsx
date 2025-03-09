@@ -70,7 +70,6 @@ export default function ProductsPage() {
                 <TableHead>Gambar</TableHead>
                 <TableHead>Nama</TableHead>
                 <TableHead>Kategori</TableHead>
-                <TableHead>Instagram Link</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
             </TableHeader>
@@ -88,20 +87,6 @@ export default function ProductsPage() {
                   </TableCell>
                   <TableCell>{product.name}</TableCell>
                   <TableCell>{product.category.name}</TableCell>
-                  <TableCell>
-                    {product.instagram_link ? (
-                      <a
-                        href={product.instagram_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
-                      >
-                        Link
-                      </a>
-                    ) : (
-                      '-'
-                    )}
-                  </TableCell>
                   <TableCell className="text-right space-x-2">
                     <Button
                       variant="outline"
