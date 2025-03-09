@@ -37,6 +37,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     description: '',
     main_photo_url: '',
     gallery_photos: [],
+    price: 0,
   });
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         description: product.description,
         main_photo_url: product.main_photo_url,
         gallery_photos: product.galleries.map(g => g.photo_url),
+        price: product.price,
       });
     } catch (error) {
       toast.error('Gagal memuat data produk');
@@ -155,6 +157,27 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                 maxImages={5}
               />
             </div>
+
+            <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  Rp
+                </span>
+                <Input
+                  id="price"
+                  type="number"
+                  className="pl-10"
+                  value={formData.price}
+                  onChange={(e) => 
+                    setFormData(prev => ({ 
+                      ...prev, 
+                      price: parseFloat(e.target.value) || 0 
+                    }))
+                  }
+                  min="0"
+                  step="1000"
+                  required
+                />
+              </div>
 
             <Button type="submit" disabled={submitting}>
               {submitting ? 'Menyimpan...' : 'Simpan Perubahan'}

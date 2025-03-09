@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
 
 const CATEGORIES = [
   { 
@@ -33,6 +34,7 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     loadProducts();
@@ -98,7 +100,7 @@ export default function ProductsPage() {
           <h2 className="text-2xl font-bold mb-6">Latest Products</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {displayedProducts.map((product) => (
-              <Card key={product.id} className="overflow-hidden group">
+              <Card key={product.id} className="overflow-hidden group" onClick={() => setSelectedProduct(product)}>
                 <div className="aspect-square relative">
                   <Image
                     src={product.main_photo_url}
@@ -128,6 +130,13 @@ export default function ProductsPage() {
           )}
         </section>
       </div>
+      {selectedProduct && (
+        <ProductDetailDialog
+          product={selectedProduct}
+          open={!!selectedProduct}
+          onOpenChange={(open) => !open && setSelectedProduct(null)}
+        />
+      )}
     </div>
   );
 }

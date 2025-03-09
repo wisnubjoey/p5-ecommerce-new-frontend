@@ -36,6 +36,7 @@ export default function CreateProductPage() {
     description: '',
     main_photo_url: '',
     gallery_photos: [],
+    price: 0,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -148,6 +149,27 @@ export default function CreateProductPage() {
                 maxImages={5}
               />
             </div>
+
+            <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  Rp
+                </span>
+                <Input
+                  id="price"
+                  type="number"
+                  className="pl-10"
+                  value={formData.price}
+                  onChange={(e) => 
+                    setFormData(prev => ({ 
+                      ...prev, 
+                      price: parseFloat(e.target.value) || 0 
+                    }))
+                  }
+                  min="0"
+                  step="1000"
+                  required
+                />
+              </div>
 
             <div className="flex gap-4">
               <Button

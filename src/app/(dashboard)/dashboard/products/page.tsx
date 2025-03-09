@@ -70,6 +70,7 @@ export default function ProductsPage() {
                 <TableHead>Gambar</TableHead>
                 <TableHead>Nama</TableHead>
                 <TableHead>Kategori</TableHead>
+                <TableHead>Harga</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
             </TableHeader>
@@ -87,6 +88,7 @@ export default function ProductsPage() {
                   </TableCell>
                   <TableCell>{product.name}</TableCell>
                   <TableCell>{product.category.name}</TableCell>
+                  <TableCell>{product.price}</TableCell>
                   <TableCell className="text-right space-x-2">
                     <Button
                       variant="outline"
