@@ -19,6 +19,7 @@ import { ImageUpload } from '@/components/shared/ImageUpload';
 import { toast } from 'sonner';
 import { productsApi } from '../../../../../services/api';
 import type { Product, CreateProductDTO } from '@/lib/types/product';
+import { GalleryUpload } from '@/components/shared/GalleryUpload';
 
 const CATEGORIES = [
   { id: 1, name: 'Dream catcher' },
@@ -75,20 +76,6 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const handleGalleryUpload = (url: string) => {
-    setFormData(prev => ({
-      ...prev,
-      gallery_photos: [...(prev.gallery_photos || []), url]
-    }));
-  };
-
-  const removeGalleryImage = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      gallery_photos: prev.gallery_photos?.filter((_, i) => i !== index)
-    }));
   };
 
   if (loading) {
@@ -164,59 +151,16 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
 
             <div className="space-y-2">
               <Label>Galeri Foto (Maksimal 5)</Label>
-              <div className="grid grid-cols-2 gap-4">
-                {formData.gallery_photos?.map((url, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={url}
-                      alt={`Gallery ${index + 1}`}
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="sm"
-                      className="absolute top-2 right-2"
-                      onClick={() => removeGalleryImage(index)}
-                    >
-                      Hapus
-                    </Button>
-                  </div>
-                ))}
-                {(formData.gallery_photos?.length || 0) < 5 && (
-                  <ImageUpload
-                    value=""
-                    onChange={(url) => handleGalleryUpload(url || '')}
-                    endpoint="productGallery"
-                  />
-                )}
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="instagram">Link Instagram</Label>
-              <Input
-                id="instagram"
-                value={formData.instagram_link}
-                onChange={(e) => 
-                  setFormData(prev => ({ ...prev, instagram_link: e.target.value }))
-                }
-                placeholder="https://instagram.com/..."
+              <GalleryUpload
+                value={formData.gallery_photos || []}
+                onChange={(urls) => setFormData(prev => ({ ...prev, gallery_photos: urls }))}
+                maxImages={5}
               />
             </div>
 
-            <div className="flex gap-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => router.back()}
-              >
-                Batal
-              </Button>
-              <Button type="submit" disabled={submitting}>
-                {submitting ? 'Menyimpan...' : 'Simpan Perubahan'}
-              </Button>
-            </div>
+            <Button type="submit" disabled={submitting}>
+              {submitting ? 'Menyimpan...' : 'Simpan Perubahan'}
+            </Button>
           </form>
         </CardContent>
       </Card>

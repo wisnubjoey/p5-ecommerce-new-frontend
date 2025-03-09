@@ -19,6 +19,7 @@ import { ImageUpload } from '@/components/shared/ImageUpload';
 import { toast } from 'sonner';
 import { productsApi } from '../../../../../services/api';
 import type { CreateProductDTO } from '@/lib/types/product';
+import { GalleryUpload } from '@/components/shared/GalleryUpload';
 
 const CATEGORIES = [
   { id: 1, name: 'Dream catcher' },
@@ -141,34 +142,12 @@ export default function CreateProductPage() {
             </div>
 
             <div className="space-y-2">
-              <Label>Galeri Foto (Maksimal 5)</Label>
-              <div className="grid grid-cols-2 gap-4">
-                {formData.gallery_photos?.map((url, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={url}
-                      alt={`Gallery ${index + 1}`}
-                      className="w-full h-32 object-cover rounded-lg"
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="sm"
-                      className="absolute top-2 right-2"
-                      onClick={() => removeGalleryImage(index)}
-                    >
-                      Hapus
-                    </Button>
-                  </div>
-                ))}
-                {(formData.gallery_photos?.length || 0) < 5 && (
-                  <ImageUpload
-                    value=""
-                    onChange={handleGalleryUpload}
-                    endpoint="productGallery"
-                  />
-                )}
-              </div>
+              <Label>Galeri Foto</Label>
+              <GalleryUpload
+                value={formData.gallery_photos || []}
+                onChange={(urls) => setFormData(prev => ({ ...prev, gallery_photos: urls }))}
+                maxImages={5}
+              />
             </div>
 
             <div className="space-y-2">

@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { UploadButton } from '@uploadthing/react';
 import { toast } from 'sonner';
-import { X } from 'lucide-react';
+import { X, Upload, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 import type { OurFileRouter } from "@/app/api/uploadthing/core";
 
@@ -46,19 +46,49 @@ export const ImageUpload = ({
           />
           <button
             onClick={onRemove}
-            className="absolute -top-2 -right-2 p-1 bg-red-500 rounded-full text-white"
+            className="absolute -top-2 -right-2 p-1 bg-red-500 rounded-full text-white hover:bg-red-600 transition-colors"
           >
             <X size={16} />
           </button>
         </div>
       ) : (
-        <UploadButton<OurFileRouter, typeof endpoint>
-          endpoint={endpoint}
-          onClientUploadComplete={onUploadComplete}
-          onUploadError={(error: Error) => {
-            toast.error(`ERROR! ${error.message}`);
-          }}
-        />
+        <div className="w-full max-w-[200px] aspect-square">
+          <UploadButton<OurFileRouter, typeof endpoint>
+            endpoint={endpoint}
+            onClientUploadComplete={onUploadComplete}
+            onUploadError={(error: Error) => {
+              toast.error(`ERROR! ${error.message}`);
+            }}
+            appearance={{
+              button: "w-full h-full bg-muted hover:bg-muted/80 rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-muted-foreground/50 transition flex flex-col items-center justify-center gap-2",
+              allowedContent: "hidden"
+            }}
+            content={{
+              button({ ready }) {
+                if (ready) {
+                  return (
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="p-2 bg-background rounded-lg">
+                        <Upload className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <span className="text-sm font-medium text-black">Pilih File</span>
+                        <span className="text-xs text-muted-foreground">
+                          {endpoint === "productImage" ? "Maks. 8MB" : "Maks. 8MB"}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+                return (
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">Loading...</span>
+                  </div>
+                );
+              }
+            }}
+          />
+        </div>
       )}
     </div>
   );

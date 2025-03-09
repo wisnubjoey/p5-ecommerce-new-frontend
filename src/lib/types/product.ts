@@ -11,10 +11,15 @@ export interface Product {
       id: number;
       name: string;
     };
-    galleries: {
-      id: number;
-      photo_url: string;
-    }[];
+    galleries: ProductGallery[];
+  }
+
+  export interface ProductGallery {
+    id: number;
+    product_id: number;
+    photo_url: string;
+    created_at: string;
+    updated_at: string;
   }
   
   export interface CreateProductDTO {
