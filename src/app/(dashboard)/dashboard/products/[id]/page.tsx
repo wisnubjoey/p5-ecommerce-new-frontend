@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select';
 import { ImageUpload } from '@/components/shared/ImageUpload';
 import { toast } from 'sonner';
-import { productsApi } from '../../../../../services/api';
+import { productsApi } from '../../../../../../services/api';
 import type { Product, CreateProductDTO } from '@/lib/types/product';
 import { GalleryUpload } from '@/components/shared/GalleryUpload';
 
@@ -55,7 +55,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
       });
     } catch (error) {
       toast.error('Gagal memuat data produk');
-      router.push('/products');
+      router.push('/dashboard/products');
     } finally {
       setLoading(false);
     }
@@ -68,7 +68,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     try {
       await productsApi.update(parseInt(params.id), formData);
       toast.success('Produk berhasil diupdate');
-      router.push('/products');
+      router.push('/dashboard/products');
     } catch (error) {
       toast.error('Gagal mengupdate produk');
     } finally {

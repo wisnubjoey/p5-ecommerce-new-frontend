@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select';
 import { ImageUpload } from '@/components/shared/ImageUpload';
 import { toast } from 'sonner';
-import { productsApi } from '../../../../../services/api';
+import { productsApi } from '../../../../../../services/api';
 import type { CreateProductDTO } from '@/lib/types/product';
 import { GalleryUpload } from '@/components/shared/GalleryUpload';
 
@@ -48,7 +48,7 @@ export default function CreateProductPage() {
       const response = await productsApi.create(formData);
       console.log("response dari api", response);
       toast.success('Produk berhasil ditambahkan');
-      router.push('/products');
+      router.push('/dashboard/products');
     } catch (error: any) {
         console.error('Error detail:', error.response?.data);
       toast.error('Gagal menambahkan produk');

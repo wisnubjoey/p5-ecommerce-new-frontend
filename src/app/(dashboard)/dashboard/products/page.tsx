@@ -17,7 +17,7 @@ import {
 import { toast } from 'sonner';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import type { Product } from '@/lib/types/product';
-import { productsApi } from '../../../../services/api';
+import { productsApi } from '../../../../../services/api';
 
 export default function ProductsPage() {
   const router = useRouter();
@@ -57,7 +57,7 @@ export default function ProductsPage() {
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Daftar Produk</h1>
-        <Button onClick={() => router.push('/products/create')}>
+        <Button onClick={() => router.push('/dashboard/products/create')}>
           <Plus className="mr-2 h-4 w-4" /> Tambah Produk
         </Button>
       </div>
@@ -91,7 +91,7 @@ export default function ProductsPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => router.push(`/products/${product.id}`)}
+                      onClick={() => router.push(`/dashboard/products/${product.id}`)}
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
