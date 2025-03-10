@@ -297,11 +297,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        
-
-        {/* Instagram Wall */}
-        <section className="py-20">
-          <div className="max-w-6xl mx-auto px-4">
+        {/* Gallery Wall */}
+        <section className="pt-20 pb-32">
+          <div className="max-w-[1440px] mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-serif text-[#4A3F35] mb-4">
                 Our Gallery
@@ -309,9 +307,9 @@ export default function HomePage() {
               <p className="text-[#8B7355] text-lg">Follow our journey @crafthaven</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[200px]">
-              {/* Large landscape image - spans 8 columns */}
-              <div className="relative md:col-span-8 rounded-2xl overflow-hidden group">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px]">
+              {/* Large landscape image - spans 6 columns */}
+              <div className="relative md:col-span-6 rounded-2xl overflow-hidden group">
                 <Image
                   src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4"
                   alt="Forest road aerial view"
@@ -321,8 +319,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Medium square image - spans 4 columns */}
-              <div className="relative md:col-span-4 rounded-2xl overflow-hidden group">
+              {/* Medium square image - spans 3 columns */}
+              <div className="relative md:col-span-3 rounded-2xl overflow-hidden group">
                 <Image
                   src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8"
                   alt="Misty forest"
@@ -332,8 +330,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Small cottage image - spans 4 columns */}
-              <div className="relative md:col-span-4 rounded-2xl overflow-hidden group">
+              {/* Small cottage image - spans 3 columns */}
+              <div className="relative md:col-span-3 rounded-2xl overflow-hidden group">
                 <Image
                   src="https://images.unsplash.com/photo-1518780664697-55e3ad937233"
                   alt="Cottage in forest"
@@ -343,8 +341,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Large mountain landscape - spans 8 columns */}
-              <div className="relative md:col-span-8 rounded-2xl overflow-hidden group">
+              {/* Large mountain landscape - spans 6 columns */}
+              <div className="relative md:col-span-6 rounded-2xl overflow-hidden group">
                 <Image
                   src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
                   alt="Mountain landscape"
@@ -353,20 +351,23 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
+
+              {/* Additional landscape image - spans 6 columns */}
+              <div className="relative md:col-span-6 rounded-2xl overflow-hidden group">
+                <Image
+                  src="https://images.unsplash.com/photo-1542224566-6e85f2e6772f"
+                  alt="Forest in fog"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             </div>
           </div>
         </section>
-
-        {/* Product Detail Dialog */}
-        {selectedProduct && (
-          <ProductDetailDialog
-            product={selectedProduct}
-            open={!!selectedProduct}
-            onOpenChange={(open) => !open && setSelectedProduct(null)}
-          />
-        )}
+        <Footer />
       </main>
-      <Footer />
+      <div>‎</div>
     </>
   );
 }
