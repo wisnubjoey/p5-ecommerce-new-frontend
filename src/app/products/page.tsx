@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
+import Link from 'next/link';
 
 const CATEGORIES = [
   { 
@@ -78,19 +79,24 @@ export default function ProductsPage() {
           <h2 className="text-2xl font-bold mb-6">Our Categories</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CATEGORIES.map((category) => (
-              <Card key={category.id} className="overflow-hidden group cursor-pointer">
-                <div className="aspect-[4/3] relative">
-                  <Image
-                    src={category.image}
-                    alt={category.name}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <h3 className="text-xl font-semibold text-center">{category.name}</h3>
-                </CardContent>
-              </Card>
+              <Link 
+                key={category.id} 
+                href={`/products/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                <Card className="overflow-hidden group cursor-pointer">
+                  <div className="aspect-[4/3] relative">
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                  <CardContent className="p-4">
+                    <h3 className="text-xl font-semibold text-center">{category.name}</h3>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </section>
