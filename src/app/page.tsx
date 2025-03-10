@@ -32,10 +32,11 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#FDF8F3] max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl">
+      <main className="min-h-screen bg-white max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl">
         <div>‎</div>
+
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center rounded-3xl overflow-hidden mt-2 mb6">
+        <section className="relative min-h-[70vh] flex items-center rounded-3xl overflow-hidden mt-2 mb-6">
           <div className="absolute inset-0 bg-[#F5E6D8]">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338')] bg-cover bg-center opacity-20" />
           </div>
@@ -59,34 +60,139 @@ export default function HomePage() {
                 src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f"
                 alt="Jewelry crafting"
                 fill
-                className="object-cover rounded-lg"
+                className="object-cover rounded-3xl"
               />
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="py-16 bg-white rounded-3xl my-8">
+        {/* Image with Text Section */}
+<section className="py-16 bg-white my-8">
+  <div className="max-w-5xl mx-auto px-4">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Left side - Image */}
+      <div className="relative aspect-square">
+        <Image
+          src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f"
+          alt="Jewelry crafting"
+          fill
+          className="object-cover rounded-2xl"
+        />
+      </div>
+
+      {/* Right side - Content */}
+      <div className="space-y-6">
+        <h2 className="text-4xl font-serif text-[#4A3F35]">
+          Discover Our Handcrafted Collection
+        </h2>
+        <p className="text-[#8B7355] text-lg">
+          Each piece is carefully crafted with attention to detail and premium materials, 
+          ensuring you receive jewelry that's as unique as you are.
+        </p>
+        <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full">
+          Explore Collection
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+        {/* Unique Styles Banner */}
+        <section className="py-10 rounded-3xl bg-[#f8e6d3]">
           <div className="max-w-5xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: '✨', title: 'Handcrafted', subtitle: 'With Love' },
-                { icon: '💎', title: 'Premium', subtitle: 'Materials' },
-                { icon: '🎁', title: 'Gift Ready', subtitle: 'Packaging' },
-                { icon: '⭐', title: 'Customer', subtitle: 'Satisfaction' },
-              ].map((item) => (
-                <div key={item.title} className="text-center">
-                  <div className="text-4xl mb-3">{item.icon}</div>
-                  <h3 className="font-semibold text-[#4A3F35]">{item.title}</h3>
-                  <p className="text-sm text-[#8B7355]">{item.subtitle}</p>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h2 className="text-4xl font-serif font-bold text-[#4A3F35] mb-6">
+                  Jewelry Unique Styles
+                </h2>
+                <p className="text-[#8B7355] mb-8">
+                  Discover our collection of unique and handcrafted jewelry pieces that tell your story.
+                </p>
+                <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6">
+                  Shop Now
+                </Button>
+              </div>
+              <div className="relative h-[600px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1519471245485-5d5981842a2b?q=80&w=3168&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Unique Styles"
+                  fill
+                  className="object-cover rounded-3xl"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16 bg-[#e6d8ca] rounded-3xl my-8">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="mb-6 relative w-16 h-16 mx-auto">
+                  <Image
+                    src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/award.svg"
+                    alt="Certified"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
-              ))}
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Certified</h3>
+                <p className="text-sm text-[#8B7355]">
+                  Available certificates of authenticity
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-6 relative w-16 h-16 mx-auto">
+                  <Image
+                    src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shield-check.svg"
+                    alt="Secure"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Secure</h3>
+                <p className="text-sm text-[#8B7355]">
+                  Certified marketplace since 2024
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-6 relative w-16 h-16 mx-auto">
+                  <Image
+                    src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/truck.svg"
+                    alt="Shipping"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Shipping</h3>
+                <p className="text-sm text-[#8B7355]">
+                  Free, fast, and reliable worldwide
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-6 relative w-16 h-16 mx-auto">
+                  <Image
+                    src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/refresh-ccw.svg"
+                    alt="Transparent"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Transparent</h3>
+                <p className="text-sm text-[#8B7355]">
+                  Hassle-free return policy
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Sparkle in Love Section */}
-        <section className="py-20 rounded-3xl my-8">
+        <section className="py-20 rounded-3xl my-8 bg-[#FDF8F3]">
           <div className="max-w-5xl mx-auto px-4">
             <h2 className="text-3xl font-serif font-bold text-[#4A3F35] text-center mb-12">
               Sparkle in Love
@@ -192,7 +298,7 @@ export default function HomePage() {
         </section>
 
         {/* Unique Styles Banner */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-[#f8e6d3]">
           <div className="max-w-5xl mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
