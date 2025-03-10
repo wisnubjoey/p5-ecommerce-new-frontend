@@ -11,6 +11,7 @@ import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from "motion/react"
 
 export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
@@ -42,12 +43,12 @@ export default function HomePage() {
           </div>
           <div className="relative max-w-5xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl font-serif font-bold text-[#4A3F35] mb-6">
+              <motion.h1 className="text-5xl font-serif font-bold text-[#4A3F35] mb-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
                 Experience the Brilliance of Craftsmanship
-              </h1>
-              <p className="text-xl text-[#6B5D51] mb-8">
+              </motion.h1>
+              <motion.p className="text-xl text-[rgb(107,93,81)] mb-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
                 Discover our exquisite collection of handcrafted jewelry and accessories
-              </p>
+              </motion.p>
               <Link href="/products">
                 <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full">
                   Shop Now
@@ -55,14 +56,14 @@ export default function HomePage() {
                 </Button>
               </Link>
             </div>
-            <div className="hidden md:block relative h-[500px] w-full">
+            <motion.div className="hidden md:block relative h-[500px] w-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}>
               <Image
                 src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f"
                 alt="Jewelry crafting"
                 fill
                 className="object-cover rounded-3xl"
               />
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -90,7 +91,8 @@ export default function HomePage() {
           ensuring you receive jewelry that's as unique as you are.
         </p>
         <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full">
-          Explore Collection
+          Lihat Koleksi Perhiasan
+          <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
     </div>
@@ -112,7 +114,7 @@ export default function HomePage() {
                   Shop Now
                 </Button>
               </div>
-              <div className="relative h-[600px]">
+              <div className="relative aspect-square">
                 <Image
                   src="https://images.unsplash.com/photo-1519471245485-5d5981842a2b?q=80&w=3168&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Unique Styles"
@@ -124,226 +126,233 @@ export default function HomePage() {
           </div>
         </section>
 
+{/* Image with Text Section */}
+<section className="py-16 bg-white my-8">
+  <div className="max-w-5xl mx-auto px-4">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Left side - Image */}
+      <div className="relative aspect-square">
+        <Image
+          src="https://images.unsplash.com/photo-1569397288884-4d43d6738fbd?q=80&w=3018&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Jewelry crafting"
+          fill
+          className="object-cover rounded-2xl"
+        />
+      </div>
+
+      {/* Right side - Content */}
+      <div className="space-y-6">
+        <h2 className="text-4xl font-serif text-[#4A3F35]">
+          Discover Our Handcrafted Collection
+        </h2>
+        <p className="text-[#8B7355] text-lg">
+          Each piece is carefully crafted with attention to detail and premium materials, 
+          ensuring you receive jewelry that's as unique as you are.
+        </p>
+        <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full">
+          Explore Collection
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Banner Sections */}
+<section className="pb-24 pt-30 bg-white rounded-3xl my-8">
+  <div className="max-w-6xl mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-serif text-[#4A3F35] mb-4">Our Collections</h2>
+      <p className="text-[#8B7355] text-lg">Discover our carefully curated pieces</p>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Card 1 */}
+      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden group">
+        <Image
+          src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908"
+          alt="Luxe Abundance"
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60 flex items-center justify-center">
+          <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 className="text-2xl font-serif mb-4">Luxe Abundance</h3>
+            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black transition-colors duration-300">
+              Shop Collection
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden group">
+        <Image
+          src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a"
+          alt="Sparkle in Love"
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60 flex items-center justify-center">
+          <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 className="text-2xl font-serif mb-4">Sparkle in Love</h3>
+            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black transition-colors duration-300">
+              Discover More
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden group">
+        <Image
+          src="https://images.unsplash.com/photo-1515377905703-c4788e51af15"
+          alt="Elegant Essentials"
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60 flex items-center justify-center">
+          <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 className="text-2xl font-serif mb-4">Elegant Essentials</h3>
+            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black transition-colors duration-300">
+              View Collection
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
         {/* Features Section */}
-        <section className="py-16 bg-[#e6d8ca] rounded-3xl my-8">
+        <section className="py-20 bg-[#e6d8ca] rounded-3xl my-12">
           <div className="max-w-5xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="mb-6 relative w-16 h-16 mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-serif font-bold text-[#4A3F35] mb-4">Why Choose CraftHaven?</h2>
+              <p className="text-[#8B7355] text-lg max-w-2xl mx-auto">
+                We take pride in delivering exceptional quality and service to ensure your complete satisfaction
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+              <div className="text-center group">
+                <div className="mb-6 relative w-20 h-20 mx-auto bg-white rounded-full p-4 shadow-lg transform transition-transform duration-300 group-hover:scale-110">
                   <Image
                     src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/award.svg"
                     alt="Certified"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4 text-[#8B7355]"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Certified</h3>
-                <p className="text-sm text-[#8B7355]">
-                  Available certificates of authenticity
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-3">Authenticity Guaranteed</h3>
+                <p className="text-[#8B7355] leading-relaxed">
+                  Every piece comes with a certificate of authenticity and quality assurance
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="mb-6 relative w-16 h-16 mx-auto">
+              <div className="text-center group">
+                <div className="mb-6 relative w-20 h-20 mx-auto bg-white rounded-full p-4 shadow-lg transform transition-transform duration-300 group-hover:scale-110">
                   <Image
                     src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shield-check.svg"
                     alt="Secure"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4 text-[#8B7355]"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Secure</h3>
-                <p className="text-sm text-[#8B7355]">
-                  Certified marketplace since 2024
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-3">Secure Shopping</h3>
+                <p className="text-[#8B7355] leading-relaxed">
+                  Trusted by thousands of customers since 2024
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="mb-6 relative w-16 h-16 mx-auto">
+              <div className="text-center group">
+                <div className="mb-6 relative w-20 h-20 mx-auto bg-white rounded-full p-4 shadow-lg transform transition-transform duration-300 group-hover:scale-110">
                   <Image
                     src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/truck.svg"
                     alt="Shipping"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4 text-[#8B7355]"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Shipping</h3>
-                <p className="text-sm text-[#8B7355]">
-                  Free, fast, and reliable worldwide
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-3">Global Delivery</h3>
+                <p className="text-[#8B7355] leading-relaxed">
+                  Swift and secure worldwide shipping at your doorstep
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="mb-6 relative w-16 h-16 mx-auto">
+              <div className="text-center group">
+                <div className="mb-6 relative w-20 h-20 mx-auto bg-white rounded-full p-4 shadow-lg transform transition-transform duration-300 group-hover:scale-110">
                   <Image
                     src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/refresh-ccw.svg"
                     alt="Transparent"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4 text-[#8B7355]"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-[#4A3F35] mb-2">Transparent</h3>
-                <p className="text-sm text-[#8B7355]">
-                  Hassle-free return policy
+                <h3 className="text-xl font-bold text-[#4A3F35] mb-3">Easy Returns</h3>
+                <p className="text-[#8B7355] leading-relaxed">
+                  30-day hassle-free return policy for your peace of mind
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Sparkle in Love Section */}
-        <section className="py-20 rounded-3xl my-8 bg-[#FDF8F3]">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl font-serif font-bold text-[#4A3F35] text-center mb-12">
-              Sparkle in Love
-            </h2>
-            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-4">
-              {[
-                'Necklaces', 'Earrings', 'Bracelets', 'Rings', 'Pendants',
-                'Anklets', 'Brooches', 'Charms'
-              ].map((category) => (
-                <Link href={`/products/${category.toLowerCase()}`} key={category}>
-                  <div className="text-center group cursor-pointer">
-                    <div className="aspect-square relative mb-3">
-                      <Image
-                        src={`https://source.unsplash.com/random/300x300/?jewelry,${category}`}
-                        alt={category}
-                        fill
-                        className="object-cover rounded-lg group-hover:scale-105 transition-transform"
-                      />
-                    </div>
-                    <p className="text-sm text-[#4A3F35]">{category}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Banner Sections */}
-        <section className="py-20 bg-white rounded-3xl my-8">
-          <div className="max-w-5xl mx-auto px-4 space-y-12">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908"
-                  alt="Luxe Abundance"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h3 className="text-2xl font-serif mb-4">Luxe Abundance</h3>
-                    <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
-                      Shop Collection
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a"
-                  alt="Sparkle in Love"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h3 className="text-2xl font-serif mb-4">Sparkle in Love</h3>
-                    <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
-                      Discover More
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Products */}
-        <section className="py-20">
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="flex justify-between items-center mb-12">
-              <h2 className="text-3xl font-serif font-bold text-[#4A3F35]">
-                Featured Products
-              </h2>
-              <div className="flex gap-2">
-                <Button variant="outline" size="icon">
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="icon">
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[1, 2, 3, 4].map((i) => (
-                <Card key={i} className="overflow-hidden group cursor-pointer bg-white border-none shadow-sm">
-                  <div className="aspect-square relative">
-                    <Image
-                      src={`https://source.unsplash.com/random/400x400/?jewelry,${i}`}
-                      alt={`Featured product ${i}`}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                  <CardContent className="p-4 text-center">
-                    <h3 className="font-medium text-[#4A3F35]">Beautiful Necklace</h3>
-                    <p className="mt-2 text-[#8B7355]">$299.99</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Unique Styles Banner */}
-        <section className="py-20 bg-[#f8e6d3]">
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="text-4xl font-serif font-bold text-[#4A3F35] mb-6">
-                  Jewelry Unique Styles
-                </h2>
-                <p className="text-[#8B7355] mb-8">
-                  Discover our collection of unique and handcrafted jewelry pieces that tell your story.
-                </p>
-                <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6">
-                  Shop Now
-                </Button>
-              </div>
-              <div className="relative h-[600px]">
-                <Image
-                  src="https://images.unsplash.com/photo-1535632787350-4e68ef0ac584"
-                  alt="Unique Styles"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Instagram Wall */}
         <section className="py-20">
-          <div className="max-w-5xl mx-auto px-4">
+          <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-serif font-bold text-[#4A3F35]">
-                Follow Us on Instagram
+              <h2 className="text-4xl font-serif text-[#4A3F35] mb-4">
+                Our Gallery
               </h2>
-              <p className="text-[#8B7355] mt-2">@crafthaven</p>
+              <p className="text-[#8B7355] text-lg">Follow our journey @crafthaven</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="aspect-square relative">
-                  <Image
-                    src={`https://source.unsplash.com/random/300x300/?jewelry,instagram,${i}`}
-                    alt={`Instagram post ${i}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
+            
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[200px]">
+              {/* Large landscape image - spans 8 columns */}
+              <div className="relative md:col-span-8 rounded-2xl overflow-hidden group">
+                <Image
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4"
+                  alt="Forest road aerial view"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+
+              {/* Medium square image - spans 4 columns */}
+              <div className="relative md:col-span-4 rounded-2xl overflow-hidden group">
+                <Image
+                  src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8"
+                  alt="Misty forest"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+
+              {/* Small cottage image - spans 4 columns */}
+              <div className="relative md:col-span-4 rounded-2xl overflow-hidden group">
+                <Image
+                  src="https://images.unsplash.com/photo-1518780664697-55e3ad937233"
+                  alt="Cottage in forest"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+
+              {/* Large mountain landscape - spans 8 columns */}
+              <div className="relative md:col-span-8 rounded-2xl overflow-hidden group">
+                <Image
+                  src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+                  alt="Mountain landscape"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             </div>
           </div>
         </section>
