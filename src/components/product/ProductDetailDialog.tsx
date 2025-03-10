@@ -3,9 +3,13 @@
 
 import { useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { Product } from '@/lib/types/product';
+import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { Minus, Plus, ShoppingCart } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface ProductDetailDialogProps {
   product: Product;
@@ -19,6 +23,9 @@ export function ProductDetailDialog({
   onOpenChange
 }: ProductDetailDialogProps) {
   const [selectedImage, setSelectedImage] = useState(product.main_photo_url);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+  
   const allImages = [product.main_photo_url, ...(product.galleries?.map(g => g.photo_url) || [])];
 
   const formatPrice = (price: number) => {
@@ -26,6 +33,20 @@ export function ProductDetailDialog({
       style: 'currency',
       currency: 'IDR'
     }).format(price);
+  };
+
+  const handleQuantityChange = (delta: number) => {
+    const newQuantity = quantity + delta;
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    toast.success(`${quantity} ${product.name} ditambahkan ke keranjang`);
+    onOpenChange(false); // Close dialog after adding to cart
+    setQuantity(1); // Reset quantity
   };
 
   return (
@@ -64,14 +85,14 @@ export function ProductDetailDialog({
           </div>
 
           {/* Product Info */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
               <h2 className="text-2xl font-bold">{product.name}</h2>
               <p className="text-gray-500">{product.category.name}</p>
             </div>
             
             <div>
-              <p className="text-xl font-bold text-blue-600">
+              <p className="text-2xl font-bold text-blue-600">
                 {formatPrice(product.price)}
               </p>
             </div>
@@ -81,6 +102,41 @@ export function ProductDetailDialog({
               <p className="text-gray-600 whitespace-pre-line">
                 {product.description}
               </p>
+            </div>
+
+            {/* Quantity Selector */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <span className="font-medium">Quantity:</span>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => handleQuantityChange(-1)}
+                    disabled={quantity <= 1}
+                  >
+                    <Minus size={16} />
+                  </Button>
+                  <span className="w-12 text-center">{quantity}</span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => handleQuantityChange(1)}
+                  >
+                    <Plus size={16} />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Add to Cart Button */}
+              <Button 
+                className="w-full" 
+                size="lg"
+                onClick={handleAddToCart}
+              >
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Add to Cart - {formatPrice(product.price * quantity)}
+              </Button>
             </div>
           </div>
         </div>
