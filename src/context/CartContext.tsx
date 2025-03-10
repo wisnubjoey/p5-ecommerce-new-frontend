@@ -4,6 +4,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { CartService, CartItem } from '../../services/cart';
 import { Product } from '../lib/types/product';
+import { WhatsAppCheckoutDialog } from '@/components/checkout/WhatsappCheckoutDialog';
+
 
 interface CartContextType {
   items: CartItem[];
@@ -19,6 +21,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [checkoutDialogOpen, setCheckoutDialogOpen] = useState(false);
 
   useEffect(() => {
     setItems(CartService.getCart());
@@ -48,21 +51,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const checkout = () => {
     const whatsappUrl = CartService.generateWhatsAppMessage();
-    window.open(whatsappUrl, '_blank');
+    setCheckoutDialogOpen(true);
   };
 
   return (
     <CartContext.Provider value={{
-      items,
-      addToCart,
-      updateQuantity,
-      removeFromCart,
-      clearCart,
-      getTotal,
-      checkout
-    }}>
-      {children}
-    </CartContext.Provider>
+        items,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        clearCart,
+        getTotal,
+        checkout
+      }}>
+        {children}
+        <WhatsAppCheckoutDialog
+          message={CartService.generateWhatsAppMessage()}
+          phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ''}
+          open={checkoutDialogOpen}
+          onOpenChange={setCheckoutDialogOpen}
+        />
+      </CartContext.Provider>
   );
 }
 

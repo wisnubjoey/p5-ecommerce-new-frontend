@@ -70,6 +70,13 @@ export class CartService {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
+  static formatPrice(price: number): string {
+    return new Intl.NumberFormat('id-ID', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(price);
+  }
+
   static generateWhatsAppMessage(): string {
     const cart = this.getCart();
     const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
@@ -77,16 +84,16 @@ export class CartService {
     let message = 'Halo, saya ingin memesan:\n\n';
     
     cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name}\n`;
-      message += `   Kategori: ${item.category_name}\n`;
-      message += `   Quantity: ${item.quantity}\n`;
-      message += `   Harga: Rp ${item.price.toLocaleString('id-ID')}\n`;
-      message += `   Subtotal: Rp ${(item.price * item.quantity).toLocaleString('id-ID')}\n\n`;
-    });
-
-    message += `Total: Rp ${this.getTotal().toLocaleString('id-ID')}`;
-
-    const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/${phone}?text=${encodedMessage}`;
+        message += `${index + 1}. *${item.name}*\n`;
+        message += `• Kategori: ${item.category_name}\n`;
+        message += `• Jumlah: ${item.quantity}\n`;
+        message += `• Harga: Rp ${this.formatPrice(item.price)}\n`;
+        message += `• Subtotal: Rp ${this.formatPrice(item.price * item.quantity)}\n\n`;
+      });
+    
+      message += `*Total: Rp ${this.formatPrice(this.getTotal())}*\n\n`;
+      message += '-------------------\n';
+    
+      return message;
   }
 }
