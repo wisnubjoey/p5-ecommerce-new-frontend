@@ -12,6 +12,7 @@ export interface Product {
     };
     galleries: ProductGallery[];
     price: number;
+    stock: number;
   }
 
   export interface ProductGallery {
@@ -30,4 +31,5 @@ export interface Product {
     instagram_link?: string;
     gallery_photos?: string[];
     price: number;
+    stock: number;
   }

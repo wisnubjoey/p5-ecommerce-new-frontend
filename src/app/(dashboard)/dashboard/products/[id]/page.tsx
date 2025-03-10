@@ -38,6 +38,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     main_photo_url: '',
     gallery_photos: [],
     price: 0,
+    stock: 0,
   });
 
   useEffect(() => {
@@ -54,6 +55,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         main_photo_url: product.main_photo_url,
         gallery_photos: product.galleries.map(g => g.photo_url),
         price: product.price,
+        stock: product.stock,
       });
     } catch (error) {
       toast.error('Gagal memuat data produk');
@@ -178,6 +180,23 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
                   required
                 />
               </div>
+
+              <div className="space-y-2">
+  <Label htmlFor="stock">Stok Barang</Label>
+  <Input
+    id="stock"
+    type="number"
+    value={formData.stock}
+    onChange={(e) => 
+      setFormData(prev => ({ 
+        ...prev, 
+        stock: parseInt(e.target.value) || 0 
+      }))
+    }
+    min="0"
+    required
+  />
+</div>
 
             <Button type="submit" disabled={submitting}>
               {submitting ? 'Menyimpan...' : 'Simpan Perubahan'}

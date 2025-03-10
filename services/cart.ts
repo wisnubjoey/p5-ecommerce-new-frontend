@@ -9,6 +9,7 @@ export interface CartItem {
   quantity: number;
   main_photo_url: string;
   category_name: string;
+  stock: number;
 }
 
 export class CartService {
@@ -38,7 +39,8 @@ export class CartService {
         price: product.price,
         quantity: quantity,
         main_photo_url: product.main_photo_url,
-        category_name: product.category.name
+        category_name: product.category.name,
+        stock: product.stock
       });
     }
 

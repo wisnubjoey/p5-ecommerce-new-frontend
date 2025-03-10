@@ -37,6 +37,7 @@ export default function CreateProductPage() {
     main_photo_url: '',
     gallery_photos: [],
     price: 0,
+    stock: 0,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -170,6 +171,23 @@ export default function CreateProductPage() {
                   required
                 />
               </div>
+
+              <div className="space-y-2">
+  <Label htmlFor="stock">Stok Barang</Label>
+  <Input
+    id="stock"
+    type="number"
+    value={formData.stock}
+    onChange={(e) => 
+      setFormData(prev => ({ 
+        ...prev, 
+        stock: parseInt(e.target.value) || 0 
+      }))
+    }
+    min="0"
+    required
+  />
+</div>
 
             <div className="flex gap-4">
               <Button

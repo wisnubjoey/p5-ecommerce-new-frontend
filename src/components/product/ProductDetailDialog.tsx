@@ -37,7 +37,7 @@ export function ProductDetailDialog({
 
   const handleQuantityChange = (delta: number) => {
     const newQuantity = quantity + delta;
-    if (newQuantity >= 1) {
+    if (newQuantity >= 1 && newQuantity <= product.stock) {
       setQuantity(newQuantity);
     }
   };
@@ -104,39 +104,53 @@ export function ProductDetailDialog({
               </p>
             </div>
 
+            <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-500">
+              Stok tersedia: {product.stock} item
+            </span>
+          </div>
+
             {/* Quantity Selector */}
             <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <span className="font-medium">Quantity:</span>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => handleQuantityChange(-1)}
-                    disabled={quantity <= 1}
-                  >
-                    <Minus size={16} />
-                  </Button>
-                  <span className="w-12 text-center">{quantity}</span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => handleQuantityChange(1)}
-                  >
-                    <Plus size={16} />
-                  </Button>
-                </div>
+            <div className="flex items-center gap-4">
+              <span className="font-medium">Quantity:</span>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => handleQuantityChange(-1)}
+                  disabled={quantity <= 1}
+                >
+                  <Minus size={16} />
+                </Button>
+                <span className="w-12 text-center">{quantity}</span>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => handleQuantityChange(1)}
+                  disabled={quantity >= product.stock}
+                >
+                  <Plus size={16} />
+                </Button>
               </div>
+            </div>
 
               {/* Add to Cart Button */}
               <Button 
-                className="w-full" 
-                size="lg"
-                onClick={handleAddToCart}
-              >
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Add to Cart - {formatPrice(product.price * quantity)}
-              </Button>
+              className="w-full" 
+              size="lg"
+              onClick={handleAddToCart}
+              disabled={product.stock === 0}
+            >
+              {product.stock === 0 ? (
+                'Stok Habis'
+              ) : (
+                <>
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Add to Cart - {formatPrice(product.price * quantity)}
+                </>
+              )}
+            </Button>
             </div>
           </div>
         </div>
