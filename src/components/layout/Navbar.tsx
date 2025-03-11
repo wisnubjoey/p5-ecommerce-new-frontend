@@ -76,12 +76,19 @@ export function Navbar() {
 
             {/* Icons */}
             <div className="hidden md:flex items-center space-x-6">
-              <Button variant="ghost" size="icon" className="text-[#8B7355] hover:text-[#4A3F35]">
-                <Search className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-[#8B7355] hover:text-[#4A3F35]">
-                <ShoppingBag className="h-5 w-5" />
-              </Button>
+              <Link 
+                href="/cart"
+                onClick={handleLinkClick}
+                className="inline-flex"
+              >
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-[#8B7355] hover:text-[#4A3F35]"
+                >
+                  <ShoppingBag className="h-5 w-5" />
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
