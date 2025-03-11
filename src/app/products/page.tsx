@@ -10,22 +10,27 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 const CATEGORIES = [
   { 
     id: 1, 
-    name: 'Dream catcher',
-    image: '/api/placeholder/400/300' // Nanti ganti dengan image asli
+    name: 'Dream Catcher',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+    description: 'Handcrafted dream catchers for peaceful dreams'
   },
   { 
     id: 2, 
     name: 'Perhiasan',
-    image: '/api/placeholder/400/300'
+    image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15',
+    description: 'Elegant jewelry pieces for every occasion'
   },
   { 
     id: 3, 
-    name: 'Gantungan kunci',
-    image: '/api/placeholder/400/300'
+    name: 'Gantungan Kunci',
+    image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a',
+    description: 'Unique and stylish keychain collections'
   }
 ];
 
@@ -72,53 +77,91 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Categories Section */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Our Categories</h2>
+    <main className="min-h-screen bg-white max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl">
+      {/* Hero Section */}
+      <section className="relative min-h-[50vh] flex items-center rounded-3xl overflow-hidden mt-8">
+        <div className="absolute inset-0 bg-[#F5E6D8]">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338')] bg-cover bg-center opacity-20" />
+        </div>
+        <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
+          <motion.h1 
+            className="text-5xl font-serif font-bold text-[#4A3F35] mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Our Collections
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-[#8B7355] max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Discover our handcrafted pieces, each telling its own unique story
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CATEGORIES.map((category) => (
               <Link 
                 key={category.id} 
                 href={`/products/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <Card className="overflow-hidden group cursor-pointer">
-                  <div className="aspect-[4/3] relative">
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden group">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60 flex items-center justify-center">
+                    <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-2xl font-serif mb-4">{category.name}</h3>
+                      <p className="text-sm mb-6 max-w-xs mx-auto">{category.description}</p>
+                      <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black transition-colors duration-300">
+                        View Collection
+                      </Button>
+                    </div>
                   </div>
-                  <CardContent className="p-4">
-                    <h3 className="text-xl font-semibold text-center">{category.name}</h3>
-                  </CardContent>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Products Section */}
-        <section>
-          <h2 className="text-2xl font-bold mb-6">Latest Products</h2>
+      {/* Products Grid Section */}
+      <section className="py-16 bg-[#FDF8F3] rounded-3xl my-8">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-serif text-[#4A3F35] mb-4">Latest Products</h2>
+            <p className="text-[#8B7355] text-lg">Explore our newest additions</p>
+          </div>
+          
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {displayedProducts.map((product) => (
-              <Card key={product.id} className="overflow-hidden group" onClick={() => setSelectedProduct(product)}>
+              <Card 
+                key={product.id} 
+                className="overflow-hidden group cursor-pointer bg-white" 
+                onClick={() => setSelectedProduct(product)}
+              >
                 <div className="aspect-square relative">
                   <Image
                     src={product.main_photo_url}
                     alt={product.name}
                     fill
-                    className="object-cover transition-transform group-hover:scale-105"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <CardContent className="p-4">
-                  <h3 className="font-semibold text-lg line-clamp-1">{product.name}</h3>
-                  <p className="text-sm text-gray-500">{product.category.name}</p>
-                  <p className="mt-2 text-sm line-clamp-2 text-gray-600">
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-lg text-[#4A3F35] line-clamp-1">{product.name}</h3>
+                  <p className="text-sm text-[#8B7355] mt-2">{product.category.name}</p>
+                  <p className="mt-2 text-sm line-clamp-2 text-[#8B7355]">
                     {product.description}
                   </p>
                 </CardContent>
@@ -126,16 +169,21 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          {/* Load More Button */}
           {displayedProducts.length < products.length && (
-            <div className="mt-8 text-center">
-              <Button onClick={loadMore} variant="outline" size="lg">
-                Tampilkan Lebih Banyak
+            <div className="mt-12 text-center">
+              <Button 
+                onClick={loadMore} 
+                className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full"
+              >
+                Load More
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           )}
-        </section>
-      </div>
+        </div>
+      </section>
+
+      {/* Product Detail Dialog */}
       {selectedProduct && (
         <ProductDetailDialog
           product={selectedProduct}
@@ -143,6 +191,6 @@ export default function ProductsPage() {
           onOpenChange={(open) => !open && setSelectedProduct(null)}
         />
       )}
-    </div>
+    </main>
   );
 }
