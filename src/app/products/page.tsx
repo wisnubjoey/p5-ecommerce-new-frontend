@@ -12,7 +12,7 @@ import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-
+import { Loader } from '@/components/loader/Loader';
 const CATEGORIES = [
   { 
     id: 1, 
@@ -71,7 +71,7 @@ export default function ProductsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+        <Loader />
       </div>
     );
   }
@@ -100,38 +100,6 @@ export default function ProductsPage() {
           >
             Discover our handcrafted pieces, each telling its own unique story
           </motion.p>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {CATEGORIES.map((category) => (
-              <Link 
-                key={category.id} 
-                href={`/products/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden group">
-                  <Image
-                    src={category.image}
-                    alt={category.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60 flex items-center justify-center">
-                    <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <h3 className="text-2xl font-serif mb-4">{category.name}</h3>
-                      <p className="text-sm mb-6 max-w-xs mx-auto">{category.description}</p>
-                      <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black transition-colors duration-300">
-                        View Collection
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 

@@ -13,6 +13,7 @@ export default function ProductsLayout({
       <Navbar />
       {children}
       <Footer />
+      <div>‎</div>
     </>
   );
 }
