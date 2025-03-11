@@ -13,6 +13,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Loader } from '@/components/loader/Loader';
+import { BackgroundGradient } from '@/components/ui/background-gradient';
+
 const CATEGORIES = [
   { 
     id: 1, 
@@ -34,7 +36,7 @@ const CATEGORIES = [
   }
 ];
 
-const PRODUCTS_PER_PAGE = 8;
+const PRODUCTS_PER_PAGE = 6;
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -111,29 +113,24 @@ export default function ProductsPage() {
             <p className="text-[#8B7355] text-lg">Explore our newest additions</p>
           </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedProducts.map((product) => (
-              <Card 
-                key={product.id} 
-                className="overflow-hidden group cursor-pointer bg-white" 
-                onClick={() => setSelectedProduct(product)}
+              <BackgroundGradient 
+                key={product.id}
+                className="relative aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer"
               >
-                <div className="aspect-square relative">
+                <Card 
+                  className="w-full h-full border-0 bg-transparent"
+                  onClick={() => setSelectedProduct(product)}
+                >
                   <Image
                     src={product.main_photo_url}
                     alt={product.name}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg text-[#4A3F35] line-clamp-1">{product.name}</h3>
-                  <p className="text-sm text-[#8B7355] mt-2">{product.category.name}</p>
-                  <p className="mt-2 text-sm line-clamp-2 text-[#8B7355]">
-                    {product.description}
-                  </p>
-                </CardContent>
-              </Card>
+                </Card>
+              </BackgroundGradient>
             ))}
           </div>
 
