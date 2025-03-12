@@ -34,6 +34,7 @@ export default function GantunganKunciPage() {
       
       setProducts(filteredProducts);
       setDisplayedProducts(filteredProducts.slice(0, PRODUCTS_PER_PAGE));
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal memuat produk');
     } finally {

@@ -36,6 +36,7 @@ export default function LoginPage() {
       } else {
         toast.error('Token tidak ditemukan dalam response');
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error('Login error:', error);
       toast.error(error.response?.data?.message || 'Login gagal');

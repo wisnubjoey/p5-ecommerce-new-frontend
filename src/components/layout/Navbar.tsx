@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, Search, ShoppingBag } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../page-transition/PageTransition';
 
 export function Navbar() {

@@ -5,17 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { productsApi } from '../../services/api';
 import { Product } from '@/lib/types/product';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight} from 'lucide-react';
 import { motion } from "motion/react"
 
 export default function HomePage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     loadFeaturedProducts();
@@ -25,6 +23,7 @@ export default function HomePage() {
     try {
       const data = await productsApi.getAll();
       setFeaturedProducts(data.slice(0, 6));
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       console.error('Failed to load featured products');
     }
@@ -88,7 +87,7 @@ export default function HomePage() {
         </h2>
         <p className="text-[#8B7355] text-lg">
           Each piece is carefully crafted with attention to detail and premium materials, 
-          ensuring you receive jewelry that's as unique as you are.
+          ensuring you receive jewelry that&apos;s as unique as you are.
         </p>
         <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full">
           Lihat Koleksi Perhiasan
@@ -147,7 +146,7 @@ export default function HomePage() {
         </h2>
         <p className="text-[#8B7355] text-lg">
           Each piece is carefully crafted with attention to detail and premium materials, 
-          ensuring you receive jewelry that's as unique as you are.
+          ensuring you receive jewelry that&apos;s as unique as you are.
         </p>
         <Button className="bg-[#8B7355] hover:bg-[#6B5D51] text-white px-8 py-6 text-lg rounded-full">
           Explore Collection

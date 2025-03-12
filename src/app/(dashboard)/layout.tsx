@@ -19,6 +19,7 @@ export default function DashboardLayout({
       toast.success('Logout berhasil');
       router.push('/login');
       router.refresh();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal logout');
     }

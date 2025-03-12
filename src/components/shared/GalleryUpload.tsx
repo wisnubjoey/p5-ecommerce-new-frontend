@@ -1,10 +1,9 @@
 // src/components/shared/GalleryUpload.tsx
 'use client';
 
-import { useState } from 'react';
 import { ImageUpload } from './ImageUpload';
 import { Button } from '@/components/ui/button';
-import { X, ImagePlus } from 'lucide-react';
+import { X } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 

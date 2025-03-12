@@ -18,7 +18,7 @@ import {
 import { ImageUpload } from '@/components/shared/ImageUpload';
 import { toast } from 'sonner';
 import { productsApi } from '../../../../../../services/api';
-import type { Product, CreateProductDTO } from '@/lib/types/product';
+import type { CreateProductDTO } from '@/lib/types/product';
 import { GalleryUpload } from '@/components/shared/GalleryUpload';
 
 const CATEGORIES = [
@@ -43,6 +43,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
 
   useEffect(() => {
     loadProduct();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadProduct = async () => {
@@ -57,6 +58,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         price: product.price,
         stock: product.stock,
       });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal memuat data produk');
       router.push('/dashboard/products');
@@ -73,6 +75,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
       await productsApi.update(parseInt(params.id), formData);
       toast.success('Produk berhasil diupdate');
       router.push('/dashboard/products');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal mengupdate produk');
     } finally {

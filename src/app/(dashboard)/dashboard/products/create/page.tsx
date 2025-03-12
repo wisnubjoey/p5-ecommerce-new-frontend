@@ -51,28 +51,13 @@ export default function CreateProductPage() {
       console.log("response dari api", response);
       toast.success('Produk berhasil ditambahkan');
       router.push('/dashboard/products');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.error('Error detail:', error.response?.data);
       toast.error('Gagal menambahkan produk');
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleGalleryUpload = (url?: string) => {
-    if (!url) return;
-    
-    setFormData(prev => ({
-      ...prev,
-      gallery_photos: [...(prev.gallery_photos || []), url]
-    }));
-  };
-
-  const removeGalleryImage = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      gallery_photos: prev.gallery_photos?.filter((_, i) => i !== index)
-    }));
   };
 
   return (

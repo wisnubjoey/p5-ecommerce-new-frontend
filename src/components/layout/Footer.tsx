@@ -3,8 +3,6 @@
 
 import Link from 'next/link';
 import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 
 export function Footer() {
   return (

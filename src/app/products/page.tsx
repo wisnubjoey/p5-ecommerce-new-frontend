@@ -5,36 +5,15 @@ import { useEffect, useState } from 'react';
 import { productsApi } from '../../../services/api';
 import { Product } from '@/lib/types/product';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { ProductDetailDialog } from '@/components/product/ProductDetailDialog';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Loader } from '@/components/loader/Loader';
 import { BackgroundGradient } from '@/components/ui/background-gradient';
 
-const CATEGORIES = [
-  { 
-    id: 1, 
-    name: 'Dream Catcher',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
-    description: 'Handcrafted dream catchers for peaceful dreams'
-  },
-  { 
-    id: 2, 
-    name: 'Perhiasan',
-    image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15',
-    description: 'Elegant jewelry pieces for every occasion'
-  },
-  { 
-    id: 3, 
-    name: 'Gantungan Kunci',
-    image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a',
-    description: 'Unique and stylish keychain collections'
-  }
-];
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -57,6 +36,7 @@ export default function ProductsPage() {
       );
       setProducts(sortedProducts);
       setDisplayedProducts(sortedProducts.slice(0, PRODUCTS_PER_PAGE));
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal memuat produk');
     } finally {

@@ -32,6 +32,7 @@ export default function ProductsPage() {
     try {
       const data = await productsApi.getAll();
       setProducts(data);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal memuat produk');
     } finally {
@@ -46,6 +47,7 @@ export default function ProductsPage() {
       await productsApi.delete(id);
       toast.success('Produk berhasil dihapus');
       loadProducts();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('Gagal menghapus produk');
     }

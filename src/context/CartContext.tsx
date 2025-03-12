@@ -50,7 +50,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const getTotal = () => CartService.getTotal();
 
   const checkout = () => {
-    const whatsappUrl = CartService.generateWhatsAppMessage();
     setCheckoutDialogOpen(true);
   };
 

@@ -10,7 +10,7 @@ export const ourFileRouter = {
         // Bisa tambahkan auth check disini
         return { };
       })
-      .onUploadComplete(async ({ metadata, file }) => {
+      .onUploadComplete(async ({ file }) => {
         if (!file?.ufsUrl) {
           throw new Error("Upload failed: No file URL received");
         }
@@ -26,7 +26,7 @@ export const ourFileRouter = {
       .middleware(async () => {
         return { };
       })
-      .onUploadComplete(async ({ metadata, file }) => {
+      .onUploadComplete(async ({ file }) => {
         if (!file?.ufsUrl) {
           throw new Error("Upload failed: No file URL received");
         }

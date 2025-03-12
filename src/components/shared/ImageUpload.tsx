@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { UploadButton } from '@uploadthing/react';
 import { toast } from 'sonner';
-import { X, Upload, Image as ImageIcon } from 'lucide-react';
+import { X, Upload } from 'lucide-react';
 import Image from 'next/image';
 import type { OurFileRouter } from "@/app/api/uploadthing/core";
 
