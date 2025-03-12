@@ -2,16 +2,18 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, Search, ShoppingBag } from 'lucide-react';
+import { Menu, Search, ShoppingBag, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../page-transition/PageTransition';
+import { useCart } from '@/context/CartContext';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
+  const { items } = useCart();
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -77,17 +79,16 @@ export function Navbar() {
             {/* Icons */}
             <div className="hidden md:flex items-center space-x-6">
               <Link 
-                href="/cart"
+                href="/cart" 
+                className="text-[#8B7355] hover:text-[#4A3F35] relative"
                 onClick={handleLinkClick}
-                className="inline-flex"
               >
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="text-[#8B7355] hover:text-[#4A3F35]"
-                >
-                  <ShoppingBag className="h-5 w-5" />
-                </Button>
+                <ShoppingCart className="h-6 w-6" />
+                {items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {items.length}
+                  </span>
+                )}
               </Link>
             </div>
 

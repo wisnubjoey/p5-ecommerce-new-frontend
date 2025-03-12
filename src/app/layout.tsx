@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { Playfair_Display } from 'next/font/google';
-
+import { FloatingCartButton } from "@/components/product/FloatingCartButton";
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
@@ -36,7 +36,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>{children}
+          <FloatingCartButton />
+        </CartProvider>
       </body>
     </html>
   );
